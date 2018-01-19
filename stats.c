@@ -46,22 +46,86 @@ void main() {
 
 /* Add other Implementation File Code Here */
 void print_statistics(unsigned char array[],unsigned int length){
+  unsigned char minimum=0,maximum=0;
+  unsigned int mean=0,median=0;
+
+  sort_array(array,length);
+
+  minimum=find_minimum(array,length);
+  maximum=find_maximum(array,length);
+  mean=find_mean(array,length);
+  median=find_median(array,length);
+
+  printf("Minimum: %u\n",minimum);
+  printf("Maximum: %u\n",maximum);
+  printf("Mean: %u\n",mean);
+  printf("Median: %u\n",median);
 }
 
 void print_array(unsigned char array[],unsigned int length){
+
+  printf("\nFormat of printing array will be as follows:\n");
+  printf("Number[Index of the number]\n\n");
+
+  for(unsigned int idx=0; idx<length; idx++){
+    printf("%u[%u] ",array[idx],idx);
+  }
+
+  printf("\n\n");
+
 }
 
 unsigned char find_median(unsigned char array[],unsigned int length){
+
+  unsigned char median;
+  unsigned int median_idx=0;
+
+  if((length%2)==0)
+  {
+    median_idx=((length+1)/2);
+    median=(array[median_idx]+array[median_idx+1])/2;
+  }
+  else
+  {
+    median_idx=((length+1)/2);
+    median=array[median_idx];
+  }
 }
 
 unsigned int find_mean(unsigned char array[],unsigned int length){
+    unsigned int sum=0;
+    for(unsigned int idx=0; idx<length; idx++){
+    sum+=array[idx];
+  }
+
+  return (sum/length);
 }
 
 unsigned char find_maximum(unsigned char array[],unsigned int length){
+  return (array[0]);
 }
 
 unsigned char find_minimum(unsigned char array[],unsigned int length){
+  return (array[length-1]);
 }
 
 void sort_array(unsigned char array[],unsigned int length){
+  unsigned char sorted=0;
+
+  while(!sorted){
+    sorted=1;
+    for(unsigned int idx=0; idx<(length-1); idx++){
+
+      if(array[idx]<array[idx+1]){
+
+        unsigned char temp=array[idx];
+        array[idx]=array[idx+1];
+        array[idx+1]=temp;
+        sorted=0;
+
+      }
+
+    }
+
+  }
 }
